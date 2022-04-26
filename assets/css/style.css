@@ -33,7 +33,7 @@ body {
 /* #region Utilities */
 
 .header_col {
-    height: 10%;
+    height: 8%;
     background-color: var(--secondary-lighter);
     padding: 10px 20px 10px 10px;
     display: flex;
@@ -45,6 +45,24 @@ body {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
+}
+
+.title_subtitle {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    font-size: 0.8rem;
+    color: var(--secondary);
+}
+
+.subtitle {
+    font-size: 0.8rem;
+    color: var(--secondary);
+}
+
+.title_subtitle>strong {
+    font-size: 1rem;
+    color: black;
 }
 
 .header_icons {
@@ -75,4 +93,74 @@ body {
 
 .col_right {
     width: calc(2*100%/3);
+}
+
+.main_col {
+    height: 92%;
+    background-color: white;
+}
+
+.desktop_notification {
+    height: 9%;
+    background-color: var(--info);
+    padding: 15px;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.desktop_notification>.rounded_img {
+    background-color: white;
+    color: var(--info);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.75rem;
+}
+
+.search_bar {
+    height: 5%;
+    padding: 10px;
+    display: flex;
+    background-color: whitesmoke;
+}
+
+.search_btn {
+    border: 1px solid var(--light);
+    border-right: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 10%;
+}
+
+.search_btn i {
+    font-size: 110%;
+    color: var(--secondary);
+}
+
+.search_bar input {
+    border: 1px solid var(--light);
+    width: 90%;
+    padding-left: 1rem;
+    color: var(--secondary);
+}
+
+.available_users {
+    height: 86%;
+}
+
+.user {
+    height: 12%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid whitesmoke
+}
+
+.user_avatar {
+    display: flex;
+    column-gap: 20px;
 }

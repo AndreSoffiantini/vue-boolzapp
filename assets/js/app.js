@@ -172,6 +172,12 @@ const app = new Vue({
             avatar.src = "./assets/img/avatar" + contact.avatar + ".jpg";
             name.innerText = contact.name;
 
+            // Colorare il contatto selezionato
+            for (let i = 0; i < this.contacts.length; i++) {
+                document.getElementById("contactNumber" + i).classList.remove("selected");
+            }
+            document.getElementById("contactNumber" + index).classList.add("selected");
+
             // Stampare a schermo tutti i messaggi sent nella colonna dell'utente e tutti i received nella colonna del contatto
             const userMessages = document.querySelector(".col_user");
             const contactMessages = document.querySelector(".col_contact");
@@ -181,7 +187,7 @@ const app = new Vue({
             contact.messages.forEach(element => {
 
                 if (element.status === 'sent') {
-                    console.log(element.message);
+                    //console.log(element.message);
 
                     const messageBox = document.createElement("div");
                     messageBox.classList.add("message", "user_message");
@@ -216,8 +222,6 @@ const app = new Vue({
                 }
 
             });
-
-
 
         }
 

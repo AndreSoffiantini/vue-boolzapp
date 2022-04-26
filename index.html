@@ -72,7 +72,7 @@
 
                     <div class="available_contacts">
                         <ul style="height: 100%;">
-                            <li class="contact" v-for="(contact,index) in contacts" @click="showChat(index)">
+                            <li :id="'contactNumber' + index" class="contact" v-for="(contact, index) in contacts" @click="showChat(index)">
 
                                 <div class="contact_avatar">
                                     <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="" class="rounded_img" style="height: 100%;">

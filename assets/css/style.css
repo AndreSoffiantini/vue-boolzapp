@@ -163,7 +163,8 @@ input {
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid whitesmoke
+    border-top: 1px solid whitesmoke;
+    cursor: pointer;
 }
 
 .contact_avatar {

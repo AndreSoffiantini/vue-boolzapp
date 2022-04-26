@@ -86,6 +86,10 @@ input {
     aspect-ratio: 1;
 }
 
+.selected {
+    background-color: var(--secondary-light);
+}
+
 
 /* #endregion Utilities */
 

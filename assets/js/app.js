@@ -159,6 +159,68 @@ const app = new Vue({
         ]
     },
 
-    methods: {}
+    methods: {
+
+        showChat(index) {
+
+            const contact = this.contacts[index];
+
+            // Modificare l'intestazione con foto e nome del contatto selezionato
+            const avatar = document.getElementById("selected_contact_avatar");
+            const name = document.getElementById("selected_contact_name");
+
+            avatar.src = "./assets/img/avatar" + contact.avatar + ".jpg";
+            name.innerText = contact.name;
+
+            // Stampare a schermo tutti i messaggi sent nella colonna dell'utente e tutti i received nella colonna del contatto
+            const userMessages = document.querySelector(".col_user");
+            const contactMessages = document.querySelector(".col_contact");
+            userMessages.innerHTML = '';
+            contactMessages.innerHTML = '';
+
+            contact.messages.forEach(element => {
+
+                if (element.status === 'sent') {
+                    console.log(element.message);
+
+                    const messageBox = document.createElement("div");
+                    messageBox.classList.add("message", "user_message");
+                    messageBox.innerHTML =
+                        `
+                    <span>${element.message}</span>
+                    <span class="subtitle" style="align-self: flex-end;">${element.date}</span>
+                    `;
+
+                    userMessages.appendChild(messageBox);
+
+                    const emptyBox = document.createElement("div");
+                    emptyBox.classList.add("message");
+                    contactMessages.appendChild(emptyBox);
+
+                } else if (element.status === 'received') {
+
+                    const messageBox = document.createElement("div");
+                    messageBox.classList.add("message", "contact_message");
+                    messageBox.innerHTML =
+                        `
+                    <span>${element.message}</span>
+                    <span class="subtitle" style="align-self: flex-end;">${element.date}</span>
+                    `;
+
+                    contactMessages.appendChild(messageBox);
+
+                    const emptyBox = document.createElement("div");
+                    emptyBox.classList.add("message");
+                    userMessages.appendChild(emptyBox);
+
+                }
+
+            });
+
+
+
+        }
+
+    }
 
 })

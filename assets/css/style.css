@@ -184,10 +184,13 @@ input {
 
 .message {
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 0 0.2rem 0.2rem 0.8rem;
     width: 60%;
     margin-bottom: 0.5rem;
     min-height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .contact_message {

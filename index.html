@@ -72,110 +72,19 @@
 
                     <div class="available_contacts">
                         <ul style="height: 100%;">
-                            <div class="contact">
+                            <li class="contact" v-for="(contact,index) in contacts">
 
                                 <div class="contact_avatar">
-                                    <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
+                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="" class="rounded_img" style="height: 100%;">
 
                                     <div class="title_subtitle">
-                                        <strong>Michele</strong>
+                                        <strong>{{contact.name}}</strong>
                                         <span>Ultimo messaggio inviato</span>
                                     </div>
                                 </div>
 
                                 <span class="subtitle">12:00</span>
-                            </div>
-                            <div class="contact">
-
-                                <div class="contact_avatar">
-                                    <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
-
-                                    <div class="title_subtitle">
-                                        <strong>Michele</strong>
-                                        <span>Ultimo messaggio inviato</span>
-                                    </div>
-                                </div>
-
-                                <span class="subtitle">12:00</span>
-                            </div>
-                            <div class="contact">
-
-                                <div class="contact_avatar">
-                                    <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
-
-                                    <div class="title_subtitle">
-                                        <strong>Michele</strong>
-                                        <span>Ultimo messaggio inviato</span>
-                                    </div>
-                                </div>
-
-                                <span class="subtitle">12:00</span>
-                            </div>
-                            <div class="contact">
-
-                                <div class="contact_avatar">
-                                    <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
-
-                                    <div class="title_subtitle">
-                                        <strong>Michele</strong>
-                                        <span>Ultimo messaggio inviato</span>
-                                    </div>
-                                </div>
-
-                                <span class="subtitle">12:00</span>
-                            </div>
-                            <div class="contact">
-
-                                <div class="contact_avatar">
-                                    <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
-
-                                    <div class="title_subtitle">
-                                        <strong>Michele</strong>
-                                        <span>Ultimo messaggio inviato</span>
-                                    </div>
-                                </div>
-
-                                <span class="subtitle">12:00</span>
-                            </div>
-                            <div class="contact">
-
-                                <div class="contact_avatar">
-                                    <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
-
-                                    <div class="title_subtitle">
-                                        <strong>Michele</strong>
-                                        <span>Ultimo messaggio inviato</span>
-                                    </div>
-                                </div>
-
-                                <span class="subtitle">12:00</span>
-                            </div>
-                            <div class="contact">
-
-                                <div class="contact_avatar">
-                                    <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
-
-                                    <div class="title_subtitle">
-                                        <strong>Michele</strong>
-                                        <span>Ultimo messaggio inviato</span>
-                                    </div>
-                                </div>
-
-                                <span class="subtitle">12:00</span>
-                            </div>
-                            <div class="contact">
-
-                                <div class="contact_avatar">
-                                    <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
-
-                                    <div class="title_subtitle">
-                                        <strong>Michele</strong>
-                                        <span>Ultimo messaggio inviato</span>
-                                    </div>
-                                </div>
-
-                                <span class="subtitle">12:00</span>
-                            </div>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.available_contacts -->
@@ -192,7 +101,7 @@
 
                     <div class="header_user" style="height: 100%;">
 
-                        <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
+                        <img src="./assets/img/avatar_1.jpg" alt="" class="rounded_img" style="height: 100%;">
 
                         <div class="title_subtitle">
                             <strong>Michele</strong>
@@ -223,22 +132,27 @@
                         </div>
 
                         <div class="message contact_message">
-                            Tutto fatto!
+                            <span>Tutto fatto!</span>
+                            <span class="subtitle" style="align-self: flex-end;">16:15</span>
                         </div>
 
                     </div>
+                    <!-- /.col_contact -->
 
                     <div class="col_user">
 
                         <div class="message user_message">
-                            Hai portato a spasso il cane?
+                            <span>Hai portato a spasso il cane?</span>
+                            <span class="subtitle" style="align-self: flex-end;">15:30</span>
                         </div>
 
                         <div class="message user_message">
-                            Ricordati di stendere i panni
+                            <span>Ricordati di stendere i panni</span>
+                            <span class="subtitle" style="align-self: flex-end;">15:50</span>
                         </div>
 
                     </div>
+                    <!-- /.col_user -->
 
                 </div>
                 <!-- /.main_col -->

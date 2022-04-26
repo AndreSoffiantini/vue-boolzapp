@@ -166,11 +166,22 @@ const app = new Vue({
             const contact = this.contacts[index];
 
             // Modificare l'intestazione con foto e nome del contatto selezionato
-            const avatar = document.getElementById("selected_contact_avatar");
-            const name = document.getElementById("selected_contact_name");
+            const contactHeader = document.querySelectorAll(".header_user")[1];
+            contactHeader.innerHTML = '';
 
+            const avatar = document.createElement("img");
             avatar.src = "./assets/img/avatar" + contact.avatar + ".jpg";
-            name.innerText = contact.name;
+            avatar.classList.add("rounded_img", "h-100");
+            contactHeader.appendChild(avatar);
+
+            const name = document.createElement("div");
+            name.classList.add("title_subtitle");
+            name.innerHTML =
+                `
+                <strong id="selected_contact_name">${contact.name}</strong>
+                <span>Ultimo accesso oggi alle 12:00</span>
+                `;
+            contactHeader.appendChild(name);
 
             // Colorare il contatto selezionato
             for (let i = 0; i < this.contacts.length; i++) {
@@ -188,17 +199,19 @@ const app = new Vue({
 
                 if (element.status === 'sent') {
                     //console.log(element.message);
+                    console.log(typeof(element.date));
 
                     const messageBox = document.createElement("div");
                     messageBox.classList.add("message", "user_message");
+                    const messageTime = element.date.slice(-8, -3);
                     messageBox.innerHTML =
                         `
                     <span>${element.message}</span>
-                    <span class="subtitle" style="align-self: flex-end;">${element.date}</span>
+                    <span class="subtitle" style="align-self: flex-end;">${messageTime}</span>
                     `;
-
                     userMessages.appendChild(messageBox);
 
+                    // Creare uno spazio vuoto speculare nella colonna opposta
                     const emptyBox = document.createElement("div");
                     emptyBox.classList.add("message");
                     contactMessages.appendChild(emptyBox);
@@ -207,14 +220,15 @@ const app = new Vue({
 
                     const messageBox = document.createElement("div");
                     messageBox.classList.add("message", "contact_message");
+                    const messageTime = element.date.slice(-8, -3);
                     messageBox.innerHTML =
                         `
                     <span>${element.message}</span>
-                    <span class="subtitle" style="align-self: flex-end;">${element.date}</span>
+                    <span class="subtitle" style="align-self: flex-end;">${messageTime}</span>
                     `;
-
                     contactMessages.appendChild(messageBox);
 
+                    // Creare uno spazio vuoto speculare nella colonna opposta
                     const emptyBox = document.createElement("div");
                     emptyBox.classList.add("message");
                     userMessages.appendChild(emptyBox);

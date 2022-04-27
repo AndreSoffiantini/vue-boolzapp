@@ -240,6 +240,10 @@ const app = new Vue({
 
             }
 
+        },
+
+        deleteMessage(index) {
+            this.contacts[this.selectedContact].messages.splice(index, 1);
         }
 
     }

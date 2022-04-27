@@ -93,6 +93,11 @@ input {
     height: 100%;
 }
 
+.flex_col {
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* #endregion Utilities */
 
@@ -184,6 +189,7 @@ input {
 }
 
 .message {
+    cursor: pointer;
     border-radius: 0.5rem;
     padding: 0 0.2rem 0.2rem 0.8rem;
     width: 35%;
@@ -192,6 +198,7 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .contact_message {
@@ -219,4 +226,37 @@ input {
     align-items: center;
     font-size: 130%;
     color: var(--secondary);
+}
+
+.message_utilities {
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0.3rem 0.3rem 0 0;
+}
+
+.message_utilities>i {
+    color: transparent;
+}
+
+.message:hover>.message_utilities>i {
+    color: var(--secondary);
+}
+
+.message_options {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    color: black;
+}
+
+.message_utilities>i:hover .message_options {
+    display: block;
+}
+
+.message_options>* {
+    cursor: pointer;
 }

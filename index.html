@@ -124,7 +124,19 @@
                     <div v-for="(element,index) in contacts[selectedContact].messages" class="message" :class="element.status === 'sent' ? 'user_message' : 'contact_message' ">
 
                         <span>{{element.message}}</span>
-                        <span class="subtitle" style="align-self: flex-end;">{{element.date.slice(-8, -3)}}</span>
+
+                        <div class="message_utilities flex_col h-100 subtitle">
+
+                            <i class="fa-solid fa-angle-down" style="justify-self: flex-start;">
+                                <div class="message_options">
+                                    <span>Message info</span>
+                                    <br><br>
+                                    <span @click="deleteMessage(index)">Delete message</span>
+                                </div>
+                            </i>
+
+                            <span class="subtitle" style="justify-self: flex-end;">{{element.date.slice(-8, -3)}}</span>
+                        </div>
 
                     </div>
 

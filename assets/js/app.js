@@ -5,6 +5,7 @@ const app = new Vue({
     data: {
         selectedContact: null,
         newMessageText: null,
+        searchText: null,
         contacts: [{
                 name: 'Michele',
                 avatar: '_1',
@@ -274,6 +275,39 @@ const app = new Vue({
         pushMessage(message) {
             this.contacts[this.selectedContact].messages.push(message);
             this.showChat(this.selectedContact);
+        },
+
+        searchContact() {
+
+            // Impostare il testo inserito dall'utente in minuscolo (per ignorare il case sensitive)
+            const text = this.searchText.toLowerCase();
+
+            if (text != null) {
+
+                // Se l'utente svuota la barra di ricerca e preme invio viene visualizzata nuovamente la lista intera
+                if (text === '') {
+
+                    this.contacts.forEach(contact => { contact.visible = true });
+
+                } else {
+
+                    //console.log(this.contacts[0].name.includes('ch'));
+
+                    this.contacts.forEach(contact => {
+
+                        // Leggere il nome di ciascun contatto in minuscolo (per ignorare il case sensitive)
+                        let contactName = contact.name.toLowerCase();
+
+                        if (!contactName.includes(text)) {
+                            contact.visible = false;
+                        }
+
+                    });
+
+                }
+
+            }
+
         }
 
     }

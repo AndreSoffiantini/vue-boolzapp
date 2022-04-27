@@ -63,16 +63,16 @@
                     <div class="search_bar">
 
                         <div class="search_btn">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-magnifying-glass" @click="searchContact"></i>
                         </div>
 
-                        <input type="text" placeholder="Cerca o inizia una nuova chat">
+                        <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="searchText" @keyup.enter="searchContact">
                     </div>
                     <!-- /.search_bar -->
 
                     <div class="available_contacts">
                         <ul style="height: 100%;">
-                            <li :class="index === selectedContact ? 'selected' : ''" class="contact" v-for="(contact, index) in contacts" @click="showChat(index)">
+                            <li v-if="contact.visible" :class="index === selectedContact ? 'selected' : ''" class="contact" v-for="(contact, index) in contacts" @click="showChat(index)">
 
                                 <div class="contact_avatar">
                                     <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="" class="rounded_img" style="height: 100%;">

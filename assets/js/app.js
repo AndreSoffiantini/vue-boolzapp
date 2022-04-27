@@ -172,14 +172,25 @@ const app = new Vue({
 
             if (this.newMessageText) {
 
+                const today = new Date();
+                //console.log(today.getSeconds());
+
+                let seconds = today.getSeconds();
+
+                if (seconds < 10) {
+
+                    seconds = '0' + seconds;
+
+                }
+
                 // creare un nuovo oggetto messaggio contenente il messaggio inserito nel campo apposito
                 const newMessage = {
-                    date: '',
+                    date: today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + seconds,
                     message: this.newMessageText,
                     status: 'sent'
                 }
 
-                // console.log(newMessage);
+                console.log(newMessage);
 
                 // aggiungerlo alla lista dei messaggi dell'utente selezionato e stampare la chat con il nuovo messaggio
                 this.pushMessage(newMessage);
@@ -188,13 +199,22 @@ const app = new Vue({
                 this.newMessageText = null;
 
                 // creare un messaggio di risposta automatica
+
+                seconds = parseInt(seconds) + 1;
+
+                if (seconds < 10) {
+
+                    seconds = '0' + seconds;
+
+                }
+
                 const newReply = {
-                    date: '',
+                    date: today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + seconds,
                     message: 'ok',
                     status: 'received'
                 }
 
-                // console.log(newReply);
+                console.log(newReply);
 
                 // stampare dopo un secondo la risposta automatica
                 setTimeout(this.pushMessage, 1000, newReply);

@@ -30,7 +30,6 @@ input {
     border: 1px solid var(--light);
     width: 90%;
     padding-left: 1rem;
-    color: var(--secondary);
     border-radius: 4px;
 }
 

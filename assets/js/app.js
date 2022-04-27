@@ -3,6 +3,8 @@ const app = new Vue({
     el: "#app",
 
     data: {
+        selectedContact: null,
+        newMessageText: null,
         contacts: [{
                 name: 'Michele',
                 avatar: '_1',
@@ -164,6 +166,7 @@ const app = new Vue({
         showChat(index) {
 
             const contact = this.contacts[index];
+            this.selectedContact = index;
 
             // Modificare l'intestazione con foto e nome del contatto selezionato
             const contactHeader = document.querySelectorAll(".header_user")[1];
@@ -183,12 +186,6 @@ const app = new Vue({
                 `;
             contactHeader.appendChild(name);
 
-            // Colorare il contatto selezionato
-            for (let i = 0; i < this.contacts.length; i++) {
-                document.getElementById("contactNumber" + i).classList.remove("selected");
-            }
-            document.getElementById("contactNumber" + index).classList.add("selected");
-
             // Stampare a schermo tutti i messaggi sent nella colonna dell'utente e tutti i received nella colonna del contatto
             const userMessages = document.querySelector(".col_user");
             const contactMessages = document.querySelector(".col_contact");
@@ -199,7 +196,7 @@ const app = new Vue({
 
                 if (element.status === 'sent') {
                     //console.log(element.message);
-                    console.log(typeof(element.date));
+                    //console.log(typeof(element.date));
 
                     const messageBox = document.createElement("div");
                     messageBox.classList.add("message", "user_message");
@@ -236,6 +233,28 @@ const app = new Vue({
                 }
 
             });
+
+        },
+
+        addMessage() {
+
+            if (this.newMessageText) {
+
+                // creare un nuovo oggetto messaggio contenente il messaggio inserito nel campo apposito
+                const newMessage = {
+                    date: '',
+                    message: this.newMessageText,
+                    status: 'sent'
+                }
+                console.log(newMessage);
+
+                // aggiungerlo alla lista dei messaggi dell'utente selezionato
+                this.contacts[this.selectedContact].messages.push(newMessage);
+
+                // stampare la chat con il nuovo messaggio
+                this.showChat(this.selectedContact);
+            }
+
 
         }
 

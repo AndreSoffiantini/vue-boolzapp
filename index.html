@@ -72,7 +72,7 @@
 
                     <div class="available_contacts">
                         <ul style="height: 100%;">
-                            <li :id="'contactNumber' + index" class="contact" v-for="(contact, index) in contacts" @click="showChat(index)">
+                            <li :class="index === selectedContact ? 'selected' : ''" class="contact" v-for="(contact, index) in contacts" @click="showChat(index)">
 
                                 <div class="contact_avatar">
                                     <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="" class="rounded_img" style="height: 100%;">
@@ -127,7 +127,7 @@
                         <i class="fa-regular fa-smile"></i>
                     </div>
 
-                    <input type="text" placeholder="Scrivi un messaggio">
+                    <input type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="addMessage">
 
                     <div class="record">
                         <i class="fa-solid fa-microphone"></i>

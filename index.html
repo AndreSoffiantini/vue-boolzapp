@@ -72,10 +72,10 @@
 
                     <div class="available_contacts">
                         <ul style="height: 100%;">
-                            <li v-if="contact.visible" :class="index === selectedContact ? 'selected' : ''" class="contact" v-for="(contact, index) in contacts" @click="showChat(index)">
+                            <li v-if="contact.visible" :class="index === selectedContact ? 'selected' : ''" class="contact_box" v-for="(contact, index) in contacts" @click="selectContact(index)">
 
                                 <div class="contact_avatar">
-                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="" class="rounded_img" style="height: 100%;">
+                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="" class="rounded_img h-100">
 
                                     <div class="title_subtitle">
                                         <strong>{{contact.name}}</strong>
@@ -105,18 +105,28 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
 
-                    <div class="header_user h-100"></div>
+                    <div class="header_user h-100">
+
+                        <img :src="'./assets/img/avatar' + contacts[selectedContact].avatar + '.jpg'" alt="" class="rounded_img h-100">
+
+                        <div class="title_subtitle">
+                            <strong id="selected_contact_name">{{contacts[selectedContact].name}}</strong>
+                            <span>Ultimo accesso oggi alle 12:00</span>
+                        </div>
+
+                    </div>
 
                 </div>
                 <!-- /.header_col -->
 
                 <div class="main_col">
 
-                    <div class="col_contact"></div>
-                    <!-- /.col_contact -->
+                    <div v-for="(element,index) in contacts[selectedContact].messages" class="message" :class="element.status === 'sent' ? 'user_message' : 'contact_message' ">
 
-                    <div class="col_user"></div>
-                    <!-- /.col_user -->
+                        <span>{{element.message}}</span>
+                        <span class="subtitle" style="align-self: flex-end;">{{element.date.slice(-8, -3)}}</span>
+
+                    </div>
 
                 </div>
                 <!-- /.main_col -->
@@ -127,7 +137,7 @@
                         <i class="fa-regular fa-smile"></i>
                     </div>
 
-                    <input id="messageBar" type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="addMessage">
+                    <input id="messageBar" type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="addMessage" onfocus="this.value=''">
 
                     <div class="record">
                         <i class="fa-solid fa-microphone"></i>

@@ -3,7 +3,7 @@ const app = new Vue({
     el: "#app",
 
     data: {
-        selectedContact: null,
+        selectedContact: 0,
         newMessageText: null,
         searchText: null,
         contacts: [{
@@ -164,77 +164,8 @@ const app = new Vue({
 
     methods: {
 
-        showChat(index) {
-
-            const contact = this.contacts[index];
+        selectContact(index) {
             this.selectedContact = index;
-
-            // Modificare l'intestazione con foto e nome del contatto selezionato
-            const contactHeader = document.querySelectorAll(".header_user")[1];
-            contactHeader.innerHTML = '';
-
-            const avatar = document.createElement("img");
-            avatar.src = "./assets/img/avatar" + contact.avatar + ".jpg";
-            avatar.classList.add("rounded_img", "h-100");
-            contactHeader.appendChild(avatar);
-
-            const name = document.createElement("div");
-            name.classList.add("title_subtitle");
-            name.innerHTML =
-                `
-                <strong id="selected_contact_name">${contact.name}</strong>
-                <span>Ultimo accesso oggi alle 12:00</span>
-                `;
-            contactHeader.appendChild(name);
-
-            // Stampare a schermo tutti i messaggi sent nella colonna dell'utente e tutti i received nella colonna del contatto
-            const userMessages = document.querySelector(".col_user");
-            const contactMessages = document.querySelector(".col_contact");
-            userMessages.innerHTML = '';
-            contactMessages.innerHTML = '';
-
-            contact.messages.forEach(element => {
-
-                if (element.status === 'sent') {
-                    //console.log(element.message);
-                    //console.log(typeof(element.date));
-
-                    const messageBox = document.createElement("div");
-                    messageBox.classList.add("message", "user_message");
-                    const messageTime = element.date.slice(-8, -3);
-                    messageBox.innerHTML =
-                        `
-                    <span>${element.message}</span>
-                    <span class="subtitle" style="align-self: flex-end;">${messageTime}</span>
-                    `;
-                    userMessages.appendChild(messageBox);
-
-                    // Creare uno spazio vuoto speculare nella colonna opposta
-                    const emptyBox = document.createElement("div");
-                    emptyBox.classList.add("message");
-                    contactMessages.appendChild(emptyBox);
-
-                } else if (element.status === 'received') {
-
-                    const messageBox = document.createElement("div");
-                    messageBox.classList.add("message", "contact_message");
-                    const messageTime = element.date.slice(-8, -3);
-                    messageBox.innerHTML =
-                        `
-                    <span>${element.message}</span>
-                    <span class="subtitle" style="align-self: flex-end;">${messageTime}</span>
-                    `;
-                    contactMessages.appendChild(messageBox);
-
-                    // Creare uno spazio vuoto speculare nella colonna opposta
-                    const emptyBox = document.createElement("div");
-                    emptyBox.classList.add("message");
-                    userMessages.appendChild(emptyBox);
-
-                }
-
-            });
-
         },
 
         addMessage() {
@@ -254,7 +185,9 @@ const app = new Vue({
                 this.pushMessage(newMessage);
 
                 // pulire la barra di input dei messaggi
-                document.getElementById("messageBar").value = '';
+                console.log(document.getElementById("messageBar").value);
+                document.getElementById("messageBar").value = "";
+                console.log(document.getElementById("messageBar").value);
 
                 // creare un messaggio di risposta automatica
                 const newReply = {
@@ -274,7 +207,6 @@ const app = new Vue({
 
         pushMessage(message) {
             this.contacts[this.selectedContact].messages.push(message);
-            this.showChat(this.selectedContact);
         },
 
         searchContact() {

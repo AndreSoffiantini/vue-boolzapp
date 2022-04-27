@@ -161,7 +161,7 @@ input {
     height: 86%;
 }
 
-.contact {
+.contact_box {
     height: 12%;
     padding: 20px;
     display: flex;
@@ -179,21 +179,14 @@ input {
     background-image: url(../img/mine.jpg);
     height: 84%;
     display: flex;
-}
-
-.col_contact,
-.col_user {
-    width: 50%;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 4rem 0;
+    padding: 4rem;
 }
 
 .message {
     border-radius: 0.5rem;
     padding: 0 0.2rem 0.2rem 0.8rem;
-    width: 60%;
+    width: 35%;
     margin-bottom: 0.5rem;
     min-height: 52px;
     display: flex;
@@ -203,10 +196,12 @@ input {
 
 .contact_message {
     background-color: white;
+    align-self: flex-start;
 }
 
 .user_message {
     background-color: var(--success-light);
+    align-self: flex-end;
 }
 
 .footer_col {

@@ -249,11 +249,11 @@ const app = new Vue({
 
                 // console.log(newMessage);
 
-                // aggiungerlo alla lista dei messaggi dell'utente selezionato
-                this.contacts[this.selectedContact].messages.push(newMessage);
+                // aggiungerlo alla lista dei messaggi dell'utente selezionato e stampare la chat con il nuovo messaggio
+                this.pushMessage(newMessage);
 
-                // stampare la chat con il nuovo messaggio
-                this.showChat(this.selectedContact);
+                // pulire la barra di input dei messaggi
+                document.getElementById("messageBar").value = '';
 
                 // creare un messaggio di risposta automatica
                 const newReply = {
@@ -265,14 +265,14 @@ const app = new Vue({
                 // console.log(newReply);
 
                 // stampare dopo un secondo la risposta automatica
-                setTimeout(this.pushReply, 1000, newReply);
+                setTimeout(this.pushMessage, 1000, newReply);
 
             }
 
         },
 
-        pushReply(reply) {
-            this.contacts[this.selectedContact].messages.push(reply);
+        pushMessage(message) {
+            this.contacts[this.selectedContact].messages.push(message);
             this.showChat(this.selectedContact);
         }
 

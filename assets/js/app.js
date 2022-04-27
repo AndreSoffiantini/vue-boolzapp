@@ -185,9 +185,7 @@ const app = new Vue({
                 this.pushMessage(newMessage);
 
                 // pulire la barra di input dei messaggi
-                console.log(document.getElementById("messageBar").value);
-                document.getElementById("messageBar").value = "";
-                console.log(document.getElementById("messageBar").value);
+                this.newMessageText = null;
 
                 // creare un messaggio di risposta automatica
                 const newReply = {
@@ -211,6 +209,9 @@ const app = new Vue({
 
         searchContact() {
 
+            // Rendere inizialmente tutti i contatti visibili
+            this.contacts.forEach(contact => { contact.visible = true });
+
             // Impostare il testo inserito dall'utente in minuscolo (per ignorare il case sensitive)
             const text = this.searchText.toLowerCase();
 
@@ -219,7 +220,7 @@ const app = new Vue({
                 // Se l'utente svuota la barra di ricerca e preme invio viene visualizzata nuovamente la lista intera
                 if (text === '') {
 
-                    this.contacts.forEach(contact => { contact.visible = true });
+                    return;
 
                 } else {
 
@@ -230,6 +231,7 @@ const app = new Vue({
                         // Leggere il nome di ciascun contatto in minuscolo (per ignorare il case sensitive)
                         let contactName = contact.name.toLowerCase();
 
+                        // Se il nome del contatto non include il testo inserito nascondere il contatto
                         if (!contactName.includes(text)) {
                             contact.visible = false;
                         }
@@ -243,7 +245,12 @@ const app = new Vue({
         },
 
         deleteMessage(index) {
-            this.contacts[this.selectedContact].messages.splice(index, 1);
+
+            if (this.contacts[this.selectedContact].messages.length > 1) {
+
+                this.contacts[this.selectedContact].messages.splice(index, 1);
+
+            }
         }
 
     }

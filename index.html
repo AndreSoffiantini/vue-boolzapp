@@ -79,11 +79,11 @@
 
                                     <div class="title_subtitle">
                                         <strong>{{contact.name}}</strong>
-                                        <span>Ultimo messaggio inviato</span>
+                                        <span>{{contact.messages[contact.messages.length - 1].message}}</span>
                                     </div>
                                 </div>
 
-                                <span class="subtitle">12:00</span>
+                                <span class="subtitle">{{contact.messages[contact.messages.length - 1].date.slice(-8, -3)}}</span>
                             </li>
                         </ul>
                     </div>
@@ -149,7 +149,7 @@
                         <i class="fa-regular fa-smile"></i>
                     </div>
 
-                    <input id="messageBar" type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="addMessage" onfocus="this.value=''">
+                    <input id="messageBar" type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="addMessage" onfocus="this.value=''" :value="newMessageText">
 
                     <div class="record">
                         <i class="fa-solid fa-microphone"></i>

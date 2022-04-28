@@ -205,6 +205,10 @@ i {
     position: relative;
 }
 
+.message>span {
+    padding: 0.5rem 0;
+}
+
 .contact_message {
     background-color: white;
     align-self: flex-start;

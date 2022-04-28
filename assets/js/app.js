@@ -6,6 +6,15 @@ const app = new Vue({
         selectedContact: 0,
         newMessageText: null,
         searchText: null,
+        quotes: [
+            "The greatest glory in living lies not in never falling, but in rising every time we fall. -Nelson Mandela",
+            "The way to get started is to quit talking and begin doing. -Walt Disney",
+            "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking. -Steve Jobs",
+            "If life were predictable it would cease to be life, and be without flavor. -Eleanor Roosevelt",
+            "If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough. -Oprah Winfrey",
+            "If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success. -James Cameron",
+            "Life is what happens when you're busy making other plans. -John Lennon"
+        ],
         contacts: [{
                 name: 'Michele',
                 avatar: '_1',
@@ -168,7 +177,7 @@ const app = new Vue({
             this.selectedContact = index;
         },
 
-        addMessage() {
+        sendMessage() {
 
             // Il messaggio non viene inviato se vuoto o composto solamente da spazi
             if (this.newMessageText && !this.newMessageText.split('').every(letter => letter === ' ')) {
@@ -219,7 +228,7 @@ const app = new Vue({
 
                 const newReply = {
                     date: '' /* today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + seconds */ ,
-                    message: 'ok',
+                    message: this.quotes[Math.floor(Math.random() * this.quotes.length)],
                     status: 'received'
                 }
 

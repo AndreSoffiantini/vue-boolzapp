@@ -149,10 +149,10 @@
                         <i class="fa-regular fa-smile"></i>
                     </div>
 
-                    <input id="messageBar" type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="addMessage">
+                    <input id="messageBar" type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="sendMessage">
 
                     <div class="record">
-                        <i v-if="newMessageText" class="fa-solid fa-paper-plane" @click="addMessage"></i>
+                        <i v-if="newMessageText" class="fa-solid fa-paper-plane" @click="sendMessage"></i>
                         <i v-else class="fa-solid fa-microphone"></i>
                     </div>
 

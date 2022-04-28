@@ -6,6 +6,7 @@ const app = new Vue({
         selectedContact: 0,
         newMessageText: null,
         searchText: null,
+        contactStatus: 'Ultimo accesso oggi alle 12:00',
         quotes: [
             "The greatest glory in living lies not in never falling, but in rising every time we fall. -Nelson Mandela",
             "The way to get started is to quit talking and begin doing. -Walt Disney",
@@ -189,13 +190,16 @@ const app = new Vue({
                     status: 'sent'
                 }
 
-                console.log(newMessage);
+                //console.log(newMessage);
 
                 // aggiungerlo alla lista dei messaggi dell'utente selezionato e stampare la chat con il nuovo messaggio
                 this.pushMessage(newMessage);
 
                 // pulire la barra di input dei messaggi
                 this.newMessageText = null;
+
+                // stampare a schermo la notifica 'sta scrivendo...' in attesa della risposta automatica
+                setTimeout(this.changeContactStatus, 350, 'sta scrivendo...');
 
                 // stampare dopo un secondo la risposta automatica
                 setTimeout(this.autoReply, 1000);
@@ -217,10 +221,20 @@ const app = new Vue({
 
             // aggiungerlo alla lista dei messaggi dell'utente selezionato e stampare la chat con il nuovo messaggio
             this.pushMessage(newReply);
+
+            // stampare a schermo la notifica 'online'
+            this.changeContactStatus('online');
+
+            // dopo un paio di secondi visualizzare "ultimo accesso alle xx:yy" con l'orario corretto
+            setTimeout(this.changeContactStatus, 2000, `Ultimo accesso alle ${dayjs().format('HH:mm')}`);
         },
 
         pushMessage(message) {
             this.contacts[this.selectedContact].messages.push(message);
+        },
+
+        changeContactStatus(status) {
+            this.contactStatus = status;
         },
 
         searchContact() {
@@ -268,6 +282,7 @@ const app = new Vue({
 
             }
         },
+
 
     }
 

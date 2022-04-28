@@ -25,9 +25,9 @@
 
                 <div class="header_col">
 
-                    <div class="header_user" style="height: 100%;">
+                    <div class="header_user h-100">
 
-                        <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img" style="height: 100%;">
+                        <img src="./assets/img/avatar_io.jpg" alt="" class="rounded_img h-100">
 
                         <div class="title_subtitle">
                             <strong>Sofia</strong>
@@ -149,10 +149,11 @@
                         <i class="fa-regular fa-smile"></i>
                     </div>
 
-                    <input id="messageBar" type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="addMessage" onfocus="this.value=''" :value="newMessageText">
+                    <input id="messageBar" type="text" placeholder="Scrivi un messaggio" v-model="newMessageText" @keyup.enter="addMessage">
 
                     <div class="record">
-                        <i class="fa-solid fa-microphone"></i>
+                        <i v-if="newMessageText" class="fa-solid fa-paper-plane" @click="addMessage"></i>
+                        <i v-else class="fa-solid fa-microphone"></i>
                     </div>
 
                 </div>
@@ -166,6 +167,15 @@
     <!-- /.container -->
 
     <script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js'></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script>
+        dayjs().format()
+    </script>
+    <script src="https://unpkg.com/dayjs@1.8.21/plugin/utc.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/plugin/customParseFormat.js"></script>
+    <script>
+        dayjs.extend(window.dayjs_plugin_customParseFormat)
+    </script>
     <script src='./assets/js/app.js'></script>
 </body>
 

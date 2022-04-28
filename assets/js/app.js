@@ -184,9 +184,9 @@ const app = new Vue({
 
                 const today = dayjs();
 
-                /* var advancedFormat = require('dayjs/plugin/advancedFormat')
+                var advancedFormat = require('dayjs/plugin/advancedFormat')
                 dayjs.extend(advancedFormat)
-                today.format('Q Do k kk X x') */
+                today.format('Q Do k kk X x')
                 console.log(today);
                 //console.log(today.getSeconds());
 

@@ -71,21 +71,21 @@
                     <!-- /.search_bar -->
 
                     <div class="available_contacts">
-                        <ul style="height: 100%;">
-                            <li v-if="contact.visible" :class="index === selectedContact ? 'selected' : ''" class="contact_box" v-for="(contact, index) in contacts" @click="selectContact(index)">
+                        <!-- <ul class="h-100"> -->
+                        <div v-if="contact.visible" :class="index === selectedContact ? 'selected' : ''" class="contact_box" v-for="(contact, index) in contacts" @click="selectContact(index)">
 
-                                <div class="contact_avatar">
-                                    <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="" class="rounded_img h-100">
+                            <div class="contact_avatar">
+                                <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="" class="rounded_img h-100">
 
-                                    <div class="title_subtitle">
-                                        <strong>{{contact.name}}</strong>
-                                        <span>{{contact.messages[contact.messages.length - 1].message}}</span>
-                                    </div>
+                                <div class="title_subtitle">
+                                    <strong>{{contact.name}}</strong>
+                                    <span>{{contact.messages[contact.messages.length - 1].message}}</span>
                                 </div>
+                            </div>
 
-                                <span class="subtitle">{{contact.messages[contact.messages.length - 1].date.slice(-8, -3)}}</span>
-                            </li>
-                        </ul>
+                            <span class="subtitle">{{contact.messages[contact.messages.length - 1].date.slice(-8, -3)}}</span>
+                        </div>
+                        <!-- </ul> -->
                     </div>
                     <!-- /.available_contacts -->
 
@@ -168,18 +168,6 @@
 
     <script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js'></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-    <script>
-        dayjs().format()
-    </script>
-    <script src="https://unpkg.com/dayjs@1.8.21/plugin/utc.js"></script>
-    <script src="https://unpkg.com/dayjs@1.8.21/plugin/advancedFormat.js"></script>
-    <script>
-        dayjs.extend(window.dayjs_plugin_advancedFormat)
-    </script>
-    <script src="https://unpkg.com/dayjs@1.8.21/plugin/customParseFormat.js"></script>
-    <script>
-        dayjs.extend(window.dayjs_plugin_customParseFormat)
-    </script>
     <script src='./assets/js/app.js'></script>
 </body>
 

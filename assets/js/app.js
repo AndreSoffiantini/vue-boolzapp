@@ -182,30 +182,14 @@ const app = new Vue({
             // Il messaggio non viene inviato se vuoto o composto solamente da spazi
             if (this.newMessageText && !this.newMessageText.split('').every(letter => letter === ' ')) {
 
-                const today = dayjs();
-
-                var advancedFormat = require('dayjs/plugin/advancedFormat')
-                dayjs.extend(advancedFormat)
-                today.format('Q Do k kk X x')
-                console.log(today);
-                //console.log(today.getSeconds());
-
-                /* let seconds = today.getSeconds();
-
-                if (seconds < 10) {
-
-                    seconds = '0' + seconds;
-
-                } */
-
                 // creare un nuovo oggetto messaggio contenente il messaggio inserito nel campo apposito
                 const newMessage = {
-                    date: '' /* today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + seconds */ ,
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                     message: this.newMessageText,
                     status: 'sent'
                 }
 
-                //console.log(newMessage);
+                console.log(newMessage);
 
                 // aggiungerlo alla lista dei messaggi dell'utente selezionato e stampare la chat con il nuovo messaggio
                 this.pushMessage(newMessage);
@@ -213,32 +197,26 @@ const app = new Vue({
                 // pulire la barra di input dei messaggi
                 this.newMessageText = null;
 
-                // ripristinare l'icona con il microfono
-                //this.isWriting = false;
-
-                // creare un messaggio di risposta automatica
-
-                /* seconds = parseInt(seconds) + 1;
-
-                if (seconds < 10) {
-
-                    seconds = '0' + seconds;
-
-                } */
-
-                const newReply = {
-                    date: '' /* today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + seconds */ ,
-                    message: this.quotes[Math.floor(Math.random() * this.quotes.length)],
-                    status: 'received'
-                }
-
-                //console.log(newReply);
-
                 // stampare dopo un secondo la risposta automatica
-                setTimeout(this.pushMessage, 1000, newReply);
+                setTimeout(this.autoReply, 1000);
 
             }
 
+        },
+
+        autoReply() {
+
+            // creare un nuovo oggetto messaggio contenente una citazione selezionata casualmente dall'apposito array
+            const newReply = {
+                date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                message: this.quotes[Math.floor(Math.random() * this.quotes.length)],
+                status: 'received'
+            }
+
+            //console.log(newReply);
+
+            // aggiungerlo alla lista dei messaggi dell'utente selezionato e stampare la chat con il nuovo messaggio
+            this.pushMessage(newReply);
         },
 
         pushMessage(message) {

@@ -47,7 +47,7 @@ i {
 .footer_col {
     height: 8%;
     background-color: var(--secondary-lighter);
-    padding: 10px 20px 10px 10px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -167,12 +167,13 @@ i {
 }
 
 .available_contacts {
-    height: 86%;
+    height: 84%;
+    overflow-y: scroll;
 }
 
 .contact_box {
     height: 12%;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     border-top: 1px solid whitesmoke;
@@ -182,6 +183,8 @@ i {
 .contact_avatar {
     display: flex;
     column-gap: 20px;
+    overflow-y: hidden;
+    /* overflow-y: scroll; */
 }
 
 .col_right>.main_col {
@@ -190,6 +193,7 @@ i {
     display: flex;
     flex-direction: column;
     padding: 4rem;
+    overflow-y: scroll;
 }
 
 .message {
@@ -198,11 +202,11 @@ i {
     padding: 0 0.2rem 0.2rem 0.8rem;
     width: 35%;
     margin-bottom: 0.5rem;
-    min-height: 52px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    overflow-wrap: break-word;
 }
 
 .message>span {
